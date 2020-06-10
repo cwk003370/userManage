@@ -86,7 +86,7 @@ public class UserController {
      * </pre>
      */
 	@PostMapping("/user/updateUser")
-	public void user(@RequestBody User user) throws Exception {
+	public void updateUser(@RequestBody User user) throws Exception {
         userMng.updateUser(user);
 	}
 }

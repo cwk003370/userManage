@@ -10,24 +10,33 @@ spring:
     multipart:
       max-file-size: 100Mb
       max-request-size: 100Mb
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://49.235.247.57:1001/eureka/
-mybatis:
-  configuration:
-    database-id: mysql
----
-spring:
-  profiles: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url:  jdbc:mysql://rm-uf6fsblm233b84l15xo.mysql.rds.aliyuncs.com:3306/egov?characterEncoding=utf8&useSSL=false
     useSSL: false
     username: admin123
     password: admin123
-server:
-  port: 12001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://49.235.247.57:11001/eureka/
+  instance:
+    prefer-ip-address: true #使用ip地址注册
+    lease-renewal-interval-in-seconds: 5 #想注册中心发送心跳的续约间隔时间5s
+    lease-expiration-duration-in-seconds: 10 #eureka client发送心跳给server端后，续约到期时间（默认90秒）
+mybatis:
+  configuration:
+    database-id: mysql
 logging:
   level:
     com.rongji.egov: debug
+---
+spring:
+  profiles: dev1
+server:
+  port: 12101
+---
+spring:
+  profiles: dev2
+server:
+  port: 12201
